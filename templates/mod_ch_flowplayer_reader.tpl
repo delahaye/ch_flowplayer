@@ -1,0 +1,38 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<div class="player">
+<a href="<?php echo $this->flowplayer['movie']; ?>" style="display:block;width:<?php echo $this->flowplayer['player_width']; ?>px;height:<?php echo $this->flowplayer['player_height']; ?>px;" id="flowplayer<?php echo $this->flowplayer['id']; ?>"> </a>
+
+<script type="text/javascript">
+flowplayer("flowplayer<?php echo $this->flowplayer['id']; ?>", "system/modules/ch_flowplayer/html/flowplayer/flowplayer-3.2.7.swf",{ 
+
+<?php if ($this->flowplayer['params']) :
+	echo html_entity_decode($this->flowplayer['params']);
+else : ?>
+
+<?php if (!$this->flowplayer['autoplay'] && $this->flowplayer['preview']) : ?>
+playlist: [
+{url: '<?php echo $this->flowplayer['preview']; ?>', autoPlay: true},
+{url: '<?php echo $this->flowplayer['movie']; ?>', autoPlay: false}
+]
+<?php elseif(!$this->flowplayer['autoplay']) : ?>
+clip: { autoPlay: false }
+<?php endif; ?>
+
+<?php endif; ?>
+
+});
+</script>
+</div>
+
+<div class="description"><?php echo $this->description; ?></div>
+
+<?php if ($this->flowplayer['movie']) : ?>
+<p class="back"><a href="<?php echo $this->referer; ?>" title="<?php echo $this->back; ?>"><?php echo $this->back; ?></a></p>
+<?php endif; ?>
+
+</div>

@@ -1,0 +1,43 @@
+
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<?php foreach($this->playlists as $playlist): ?>
+
+	<div class="playlist <?php echo $playlist['class']; ?>">
+	
+	<h2><?php echo $playlist['title']; ?></h2>
+	
+	<?php foreach($playlist['items'] as $entry): ?>
+
+		<div class="movie <?php echo $entry['class']; ?>">
+
+			<?php if ($entry['addImage']): ?>
+				<div class="image_container"<?php if ($entry['margin'] || $entry['float']): ?> style="<?php echo $entry['margin'] . $entry['float']; ?>"<?php endif; ?>>
+				<?php if ($entry['fullsize']): ?><a href="<?php echo $entry['href']; ?>" title="<?php echo $entry['alt']; ?>" rel="lightbox"><?php endif; ?>
+				<img src="<?php echo $entry['src']; ?>"<?php echo $entry['imgSize']; ?> alt="<?php echo $entry['alt']; ?>" /><?php if ($entry['fullsize']): ?></a><?php endif; ?> 
+				<?php if ($entry['caption']): ?>
+				<div class="caption"><?php echo $entry['caption']; ?></div>
+				<?php endif; ?>
+				</div>
+			<?php endif; ?>
+
+			<h2><a href="<?php echo $entry['link']; ?>" title="<?php echo $entry['title']; ?>"><?php echo $entry['title']; ?></a></h2>
+
+			<?php if($entry['description']) : ?>
+				<div class="description"><?php echo $entry['description']; ?></div>
+			<?php endif; ?>
+		</div>
+
+	<?php endforeach; ?>
+
+	</div>
+
+<?php endforeach; ?>
+
+</div>
+<!-- indexer::continue -->
